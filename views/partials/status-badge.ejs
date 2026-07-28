@@ -1,0 +1,2 @@
+<% const badgeMap = { draft: 'secondary', pending: 'warning', approved: 'info', purchased: 'primary', fulfilled: 'success', rejected: 'danger' }; %>
+<span class="badge text-bg-<%= badgeMap[status] || 'secondary' %>"><%= status.charAt(0).toUpperCase() + status.slice(1) %></span>

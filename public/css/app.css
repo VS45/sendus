@@ -1,0 +1,15 @@
+:root { --brand: #3157d5; }
+body { background: #f6f8fc; color: #1d2638; min-height: 100vh; }
+.bg-primary, .btn-primary { background-color: var(--brand) !important; border-color: var(--brand) !important; }
+.hero { background: linear-gradient(135deg, #3157d5, #6c45d7); color: white; }
+.card, .metric-card { border: 0; border-radius: 1rem; }
+.metric-card { background: #fff; padding: 1.25rem; box-shadow: 0 .125rem .35rem rgba(23,39,74,.08); height: 100%; }
+.metric-card span { display: block; color: #687189; font-size: .9rem; }
+.metric-card strong { display: block; font-size: 1.5rem; margin-top: .35rem; }
+.table thead th { color: #687189; font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; border-bottom-width: 1px; }
+.quote-card { top: 1rem; }
+.timeline { list-style: none; padding-left: 1.25rem; border-left: 2px solid #dfe4f2; }
+.timeline li { position: relative; margin-bottom: 1.25rem; padding-left: .75rem; }
+.timeline li:last-child { margin-bottom: 0; }
+.timeline li::before { content: ''; position: absolute; width: .75rem; height: .75rem; background: var(--brand); border-radius: 50%; left: -1.69rem; top: .35rem; }
+.remove-item { width: 100%; }

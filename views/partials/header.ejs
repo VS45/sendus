@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">Company Name</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+        <% if (currentUser) { %>
+          <% if (currentUser.role === 'admin') { %>
+            <li class="nav-item"><a class="nav-link" href="/admin">Admin dashboard</a></li>
+          <% } else { %>
+            <li class="nav-item"><a class="nav-link" href="/dashboard">My requests</a></li>
+            <li class="nav-item"><a class="btn btn-light btn-sm" href="/requests/new">New request</a></li>
+          <% } %>
+          <li class="nav-item">
+            <form action="/logout" method="post" class="d-inline">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <button class="btn btn-outline-light btn-sm" type="submit">Log out</button>
+            </form>
+          </li>
+        <% } else { %>
+          <li class="nav-item"><a class="nav-link" href="/login">Log in</a></li>
+          <li class="nav-item"><a class="btn btn-light btn-sm" href="/register">Create account</a></li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>
+<main class="container py-4 py-lg-5">
+  <% if (messages.success?.length) { %><div class="alert alert-success"><%= messages.success[0] %></div><% } %>
+  <% if (messages.error?.length) { %><div class="alert alert-danger"><%= messages.error[0] %></div><% } %>
+  <% if (typeof validationErrors !== 'undefined' && validationErrors?.length) { %>
+    <div class="alert alert-danger"><ul class="mb-0"><% validationErrors.forEach((error) => { %><li><%= error.msg %></li><% }) %></ul></div>
+  <% } %>

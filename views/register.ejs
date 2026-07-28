@@ -1,0 +1,15 @@
+<%- include('./partials/header') %>
+<div class="row justify-content-center"><div class="col-md-7 col-lg-5">
+  <div class="card shadow-sm"><div class="card-body p-4">
+    <h1 class="h3 mb-3">Create your account</h1>
+    <form action="/register" method="post" novalidate>
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <div class="mb-3"><label class="form-label">Full name</label><input class="form-control" name="name" required maxlength="120" value="<%= form.name || '' %>"></div>
+      <div class="mb-3"><label class="form-label">Email address</label><input class="form-control" type="email" name="email" required value="<%= form.email || '' %>"></div>
+      <div class="mb-3"><label class="form-label">Default address</label><input class="form-control" name="address" maxlength="255" value="<%= form.address || '' %>"></div>
+      <div class="mb-3"><label class="form-label">Password</label><input class="form-control" type="password" name="password" required minlength="8"></div>
+      <button class="btn btn-primary w-100" type="submit">Create account</button>
+    </form>
+  </div></div>
+</div></div>
+<%- include('./partials/footer') %>

@@ -1,0 +1,32 @@
+{
+  "name": "sendus",
+  "version": "1.0.0",
+  "description": "this app allows users make their purchase list with the price and the company review it and make a total budget to the user to pay so that the items we be bought and delivered to the sender",
+  "keywords": [
+    "send",
+    "us",
+    "ecommerce",
+    "market",
+    "items",
+    "logistics"
+  ],
+  "license": "ISC",
+  "author": "vs45 tech",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^17.4.2",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.6.1",
+    "express-session": "^1.19.0",
+    "express-validator": "^7.3.2",
+    "mysql2": "^3.22.6",
+    "sequelize": "^6.37.8"
+  }
+}

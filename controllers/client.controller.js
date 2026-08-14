@@ -1,5 +1,11 @@
 const { validationResult } = require('express-validator');
-const { sequelize, PurchaseRequest, RequestItem, AuditLog, Notification } = require('../models');
+//const { sequelize,  RequestItem, AuditLog, Notification } = require('../models');
+const sequelize = require('../config/database');
+const PurchaseRequest=require('../models/PurchaseRequest');
+const RequestItem=require('../models/RequestItem');
+const AuditLog=require('../models/AuditLog');
+const Notification=require('../models/Notification');
+
 const { resolveLocation } = require('../services/geocodingService');
 const { calculateCharge, money } = require('../services/chargeService');
 

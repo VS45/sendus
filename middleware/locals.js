@@ -1,5 +1,6 @@
+// middleware/locals.js
 module.exports = function locals(req, res, next) {
-  res.locals.currentUser = req.user || null;
+  res.locals.currentUser = req.session.user || null;
   console.log('Current User:', res.locals.currentUser);
   res.locals.messages = {
     success: req.flash('success'),

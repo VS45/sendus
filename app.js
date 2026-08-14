@@ -6,6 +6,12 @@ require('dotenv').config();
 const sequelize = require('./config/database');
 const authRoutes = require('./routes/auth');
 const User = require('./models/User');
+const flash = require('connect-flash');
+const clientRoutes = require('./routes/clientRoutes');
+// In app.js
+const locals = require('./middleware/locals');
+
+// Add this after your session middleware
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -26,14 +32,22 @@ app.use(session({
     maxAge: 24 * 60 * 60 * 1000 // 24 hours
   }
 }));
-
+app.use(flash());
+app.use(locals);
 // Set view engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+// After setting up csrf middleware
+app.use((req, res, next) => {
+  // Pass csrfToken to all views
+  res.locals.csrfToken = req.csrfToken ? req.csrfToken() : null;
+  res.locals.form = {}; // Empty form for all views
+  next();
+});
 
 // Routes
 app.use('/', authRoutes);
-
+app.use('/requests', clientRoutes);
 // Dashboard (protected route)
 app.get('/dashboard', async (req, res) => {
   if (!req.session.user) {
@@ -59,6 +73,8 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+
 
 // Error handling middleware
 app.use((err, req, res, next) => {
